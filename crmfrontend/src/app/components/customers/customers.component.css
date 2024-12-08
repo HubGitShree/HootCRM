@@ -1,0 +1,15 @@
+.filter-container {
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+  }
+  .text-green {
+    color: green;
+  }
+  .text-red {
+    color: red;
+  }
+  .text-yellow {
+    color: rgb(99, 44, 241);
+  }

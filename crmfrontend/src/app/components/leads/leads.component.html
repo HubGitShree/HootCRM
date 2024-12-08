@@ -1,0 +1,57 @@
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+<div class="toolbar">
+    <button mat-raised-button color="primary" (click)="openCreateLeadDialog()">Create Lead</button>
+  </div>
+  
+  <div class="filter-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by Stage</mat-label>
+      <mat-select [(value)]="selectedStage" (selectionChange)="applyFilter($event.value)">
+        <mat-option value="All">All</mat-option>
+       
+        <mat-option *ngFor="let stage of stages" [value]="stage">{{ stage }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  <mat-table [dataSource]="dataSource" matSort matSortActive="leadId" matSortDirection="asc" class="leads-table">
+    <ng-container matColumnDef="leadId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Lead ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.leadId }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="customer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Customer</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.customer.name }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="salesperson">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Salesperson</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.salesperson.name }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="pipelineStage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pipeline Stage</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.pipelineStage }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <!-- <button mat-button (click)="editLead(element)">Edit</button> -->
+        <button mat-button color="warn" (click)="deleteLead(element.leadId)">Delete</button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

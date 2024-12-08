@@ -1,0 +1,15 @@
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  .filter-container {
+    margin-bottom: 1rem;
+  }
+  
+  .leads-table {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  

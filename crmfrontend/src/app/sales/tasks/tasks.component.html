@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+    <mat-form-field class="filter-input" appearance="outline">
+      <mat-label>Search Tasks</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter tasks" />
+    </mat-form-field>
+  
+    <div class="add-task-btn">
+        <button mat-raised-button color="primary" (click)="openTaskDialog()">Add Task</button>
+      </div>
+    <table mat-table [dataSource]="dataSource" matSort class="tasks-table">
+      <!-- Subject Column -->
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Subject</th>
+        <td mat-cell *matCellDef="let task">{{ task.subject }}</td>
+      </ng-container>
+  
+      <!-- Due Date Column -->
+      <ng-container matColumnDef="dueDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</th>
+        <td mat-cell *matCellDef="let task">{{ task.dueDate | date }}</td>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let task">{{ task.status }}</td>
+      </ng-container>
+  
+      <!-- Priority Column -->
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+        <td mat-cell *matCellDef="let task">{{ task.priority }}</td>
+      </ng-container>
+  
+      <!-- Actions column : Add task and delete -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let task">
+          
+          <button mat-icon-button color="warn" aria-label="Delete Task" (click)="deleteTask(task.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+  </div>
+  

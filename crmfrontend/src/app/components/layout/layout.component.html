@@ -1,0 +1,96 @@
+<div class="grid grid-cols-12 h-screen">
+  <!-- Sidebar (Spanning 2 Columns on Large Screens, Hidden on Smaller Screens) -->
+  <div class="col-span-2 border-r bg-gray-50 hidden md:block">
+    <div class="flex flex-col h-full justify-between">
+      <!-- Logo -->
+      <div class="px-4 py-6">
+        <span class="grid h-10 w-32 place-content-center rounded-lg  text-lg font-bold text-gray-700">
+          HootCRM 🦉
+        </span>
+
+        <!-- Navigation Menu -->
+        <ul class="mt-6 space-y-1">
+          <li>
+            <a routerLink="/admin/dashboard" routerLinkActive="active-link"
+              class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              Dashboard
+            </a>
+          </li>
+<!-- Commenting out the Teams : banned users and calendar for now -->
+          <!-- <li>
+            <details class="group [&_summary::-webkit-details-marker]:hidden">
+              <summary
+                class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                <span class="text-sm font-medium"> Teams </span>
+                <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1 px-4">
+                <li>
+                  <a href="#"
+                    class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                    Banned Users
+                  </a>
+                </li>
+                <li>
+                  <a href="#"
+                    class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                    Calendar
+                  </a>
+                </li>
+              </ul>
+            </details>
+          </li> -->
+          <li>
+            <a routerLink="/admin/customers" routerLinkActive="active-link"
+              class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              Customers
+            </a>
+          </li>
+          <li>
+            <a routerLink="/admin/leads" routerLinkActive="active-link"
+              class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              Leads
+            </a>
+          </li>
+          <li>
+            <a routerLink="/admin/salespipeline" routerLinkActive="active-link"
+              class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              Sales Pipeline
+            </a>
+          </li>
+          <li>
+            <a routerLink="/admin/createusers" routerLinkActive="active-link"
+              class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              Create a New User
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer Section-->
+      <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
+        <a href="#" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+          <i class="fa-solid fa-user fa-lg"></i>
+          <div>
+            <p class="text-xs">
+              <strong class="block font-medium">Admin</strong>
+              <span> admin&#64;test.com </span>
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area  -->
+  <div class="col-span-12 md:col-span-10 p-6 pt-0">
+    <!-- placeholder for  main content -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

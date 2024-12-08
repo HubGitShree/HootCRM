@@ -1,0 +1,76 @@
+<br />
+<br />
+<br />
+
+<div class="filter-container">
+  <label for="category">Filter by Category:</label>
+  <select id="category" (change)="filterByCategory($event)">
+    <option value="All">All</option>
+    <option value="POTENTIAL">Potential</option>
+    <option value="ACTIVE">Active</option>
+    <option value="INACTIVE">Inactive</option>
+  </select>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.customerId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <td mat-cell *matCellDef="let customer" [ngClass]="{'text-green': customer.category === 'ACTIVE', 'text-yellow': customer.category === 'POTENTIAL', 'text-red': customer.category === 'INACTIVE'}">
+      {{ customer.category }}
+    </td>
+    </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.email }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.phone }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.address }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateAdded">
+    <th mat-header-cell *matHeaderCellDef>Date Added</th>
+    <td mat-cell *matCellDef="let customer">{{ customer.dateAdded | date }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="[
+      'id',
+      'name',
+      'category',
+      'email',
+      'phone',
+      'address',
+      'dateAdded'
+    ]"></tr>
+  <tr mat-row *matRowDef="
+      let row;
+      columns: [
+        'id',
+        'name',
+        'category',
+        'email',
+        'phone',
+        'address',
+        'dateAdded'
+      ]
+    "></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>

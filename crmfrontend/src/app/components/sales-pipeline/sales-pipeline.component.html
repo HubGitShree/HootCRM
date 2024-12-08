@@ -1,0 +1,65 @@
+
+
+<div class="root">
+  <!-- <div class="board">
+    <div class="board-wrapper">
+      <div class="board-columns">
+        
+        <div cdkDropList 
+            cdkDropListOrientation="horizontal" class="board-columns"
+            (cdkDropListDropped)="dropGrid($event)">
+        <div 
+           cdkDragLockAxis="x" class="board-column" 
+           *ngFor="let column of salesPipeline.columns" cdkDrag>
+          <div class="column-title" cdkDragHandle>
+            {{ column.name }}
+          </div>
+          <div class="tasks-container"
+          id="{{column.id}}"
+          [cdkDropListConnectedTo]="['1', '2', '3']"
+          cdkDropList
+          [cdkDropListData]="column.leads"
+          (cdkDropListDropped)="drop($event)">
+            <div class="task" *ngFor="let item of column.leads" cdkDrag>
+              {{ item }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+  </div> -->
+
+  <div class="board">
+    <div class="board-wrapper">
+      <div class="board-columns">
+        <div
+          class="board-column"
+          *ngFor="let column of salesPipeline.columns"
+          cdkDropList
+          [cdkDropListData]="column.leads"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="column-title">{{ column.name }}</div>
+          <div class="tasks-container">
+            <div
+              class="task"
+              *ngFor="let task of column.leads"
+              cdkDrag
+            >
+              <!-- displaying lead details -->
+              <p><strong>Lead ID:</strong> {{ task.leadId }}</p>
+              <p><strong>Customer:</strong> {{ task.customer }}</p>
+              <p><strong>Salesperson:</strong> {{ task.salesperson }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

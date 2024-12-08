@@ -1,0 +1,14 @@
+.sidenav-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-sidenav {
+    width: 240px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  

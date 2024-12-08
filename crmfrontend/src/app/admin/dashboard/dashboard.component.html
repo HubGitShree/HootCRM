@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom animations */
+      @keyframes slideDown {
+          from { transform: translateY(-100%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+      }
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      @keyframes slideUp {
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+      }
+      .animate-slide-down { animation: slideDown 0.5s ease-out; }
+      .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+      .animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-gray-50">
+    <!-- HEADER -->
+    <header class="animate-slide-down fixed z-50 w-full bg-white text-gray-800 shadow-lg">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 py-2">
+        <!-- Dashboard Title -->
+        <div class="text-xl font-bold text-gray-900">Admin<span class="text-gray-800">Panel</span></div>
+        <!-- Header Icons -->
+        <div class="flex items-center space-x-2">
+          <span class="material-icons-outlined hidden cursor-pointer p-2 text-2xl transition-transform duration-300 hover:scale-110 hover:text-gray-800 md:block">search</span>
+          <span class="material-icons-outlined hidden cursor-pointer p-2 text-2xl transition-transform duration-300 hover:scale-110 hover:text-gray-800 md:block">notifications</span>
+          <img class="h-10 w-10 rounded-full object-cover transition-transform duration-300 hover:scale-110" src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg" alt="Profile" />
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="mx-auto max-w-7xl pt-16">
+      <main class="flex-1 p-4">
+        <!-- Welcome Section -->
+        <div class="mb-6 flex flex-col gap-4 lg:flex-row">
+          <!-- Welcome Card -->
+          <div class="animate-fade-in flex-1 rounded-xl border border-gray-200 bg-gray-100 p-6">
+            <h2 class="text-4xl text-gray-900 md:text-5xl">Welcome <br /><strong>Admin</strong></h2>
+            <span class="mt-8 inline-block rounded-full bg-gray-800 px-8 py-2 text-xl font-bold text-white"> {{ currentTime  }} </span>
+          </div>
+          <!-- Inbox Card -->
+          <div class="animate-fade-in flex-1 rounded-xl border border-gray-200 bg-gray-100 p-6">
+            <h2 class="text-4xl text-gray-900 md:text-5xl">Inbox <br /><strong>23</strong></h2>
+            <a href="#" class="mt-8 inline-block rounded-full bg-gray-800 px-8 py-2 text-xl font-bold text-white transition-transform duration-300 hover:scale-105 hover:bg-gray-900"> See messages </a>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
+          <!-- Stats Card 1 -->
+          <div class="animate-slide-up h-auto rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" style="animation-delay: 0.1s">
+             <app-demographychart/> 
+             <h3 class="text-xl font-bold text-gray-800 text-center">Customer Demography</h3>
+          </div>
+          <!-- Stats Card 2 -->
+          <div class="animate-slide-up h-auto w-auto rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" style="animation-delay: 0.2s">
+            <app-statscard2/>
+            <h3 class="text-xl font-bold text-gray-800">Lead Conversion Distribution By location</h3>
+          </div>
+          <!-- Stats Card 3 -->
+          <!-- <div class="animate-slide-up h-64 rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" style="animation-delay: 0.3s">
+            <h3 class="text-xl font-bold text-gray-800">Stats Card 3</h3>
+          </div> -->
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Notification animation
+      const notificationIcon = document.querySelector('.material-icons-outlined:nth-child(2)');
+      setInterval(() => {
+          notificationIcon.classList.add('scale-110');
+          setTimeout(() => notificationIcon.classList.remove('scale-110'), 200);
+      }, 5000);
+    </script>
+  </body>
+</html>

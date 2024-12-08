@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --header-height: 4rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes hoverTranslate {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(5px);
+            }
+        }
+
+        .hover-animate:hover {
+            animation: hoverTranslate 0.3s forwards ease-out;
+        }
+
+        .animate-slide-down {
+            animation: slideDown 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen overflow-x-hidden">
+          <div class="px-4 py-2 flex items-center justify-between h-12">
+
+            <button class="mobile-menu-button p-2 lg:hidden">
+
+                 <span class="material-icons-outlined text-2xl">menu</span>
+
+              </button>
+
+               <span class="text-[50px] font-semibold">Let's get some work done!</span>
+
+            </div>
+
+   
+   
+
+    <div class="pt-16 flex gap-8">
+        <!-- Sidebar -->
+        <aside class="sidebar w-[240px] bg-gray-50 h-[calc(100vh-4rem)] overflow-y-auto">
+            <div class="bg-white rounded-xl shadow-lg p-4 mb-6 transition-all duration-300 hover:shadow-xl">
+                <a href="#" class="flex items-center text-gray-600 hover:text-gray-800 py-4 hover-animate">
+                    <span class="material-icons-outlined mr-2">file_copy</span>
+                    See Tasks
+                    <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>
+                </a>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-4 transition-all duration-300 hover:shadow-xl">
+                <a href="#" class="flex items-center text-gray-600 hover:text-gray-800 py-4 hover-animate">
+                    <span class="material-icons-outlined mr-2">power_settings_new</span>
+                    Log out
+                    <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content area -->
+        <main class="flex-1">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+
+    <script>
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const sidebar = document.querySelector('.sidebar');
+
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('translate-x-0');
+        });
+    </script>
+</body>
+</html>
